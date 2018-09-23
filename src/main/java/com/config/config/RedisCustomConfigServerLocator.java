@@ -14,11 +14,11 @@ public class RedisCustomConfigServerLocator extends AbstractCustomConfigServerLo
 
     @Override
     public Map<String, String> getMap(Environment environment) {
-        String applicationName = environment.getProperty("spring.application.name");
+        String applicationName = this.getApplicationName();
 
-        String profile = environment.getProperty("spring.cloud.config.profile") == null ? "default" : environment.getProperty("spring.cloud.config.profile");
+        String profile = this.getProfile();
 
-        String label = environment.getProperty("spring.cloud.config.label") == null ? "master" : environment.getProperty("spring.cloud.config.label");
+        String label = this.getLabel();
         String redisHost = environment.getProperty("redis.host") == null ? "127.0.0.1" : environment.getProperty("redis.host");
         int port = environment.getProperty("redis.host") == null ? 6379 : Integer.parseInt(environment.getProperty("redis.host"));
         Jedis jedis = new Jedis(redisHost, port);
