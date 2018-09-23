@@ -8,10 +8,6 @@ import java.util.Map;
 
 public abstract class AbstractCustomConfigServerLocator implements PropertySourceLocator {
 
-    private String profile = "default";
-
-    private String label = "master";
-
     @Override
     public PropertySource<?> locate(Environment environment) {
         Map<String, String> properties = getMap(environment);
